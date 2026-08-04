@@ -1,0 +1,42 @@
+
+node_modules
+.DS_Store
+dist
+.npmrc
+.cache
+
+# Build and Release Folders
+bin-debug/
+bin-release/
+[Oo]bj/
+[Bb]in/
+
+# Other files and folders
+.settings/
+
+# Executables
+*.swf
+*.air
+*.ipa
+*.apk
+
+
+# Uni-app build outputs (already in dist but just in case)
+unpackage/
+.hbuilderx/
+project.private.config.json
+
+# OS files
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Workbuddy (AI workspace metadata)
+.workbuddy/
+
+# Temp files
+*.bak
+*.tmp

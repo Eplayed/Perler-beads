@@ -1,0 +1,36 @@
+{
+  "name": "拼豆图纸工坊",
+  "appid": "__UNI__PERLER_BEADS",
+  "description": "图片转拼豆图纸、色号统计、制作打卡和本地作品库。",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "app-plus": {
+    "usingComponents": true,
+    "nvueStyleCompiler": "uni-app",
+    "compilerVersion": 3,
+    "splashscreen": {
+      "alwaysShowBeforeRender": true,
+      "waiting": true,
+      "autoclose": true,
+      "delay": 0
+    },
+    "modules": {}
+  },
+  "mp-weixin": {
+    "appid": "wx96b73c7f333048bb",
+    "setting": {
+      "urlCheck": true,
+      "es6": false
+    },
+    "usingComponents": true,
+    "mergeVirtualHostAttributes": true,
+    "uniStatistics": {
+      "enable": false
+    }
+  },
+  "uniStatistics": {
+    "enable": false
+  },
+  "vueVersion": "3"
+}

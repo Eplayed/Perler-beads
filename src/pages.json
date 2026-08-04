@@ -1,0 +1,79 @@
+{
+  "pages": [
+    {
+      "path": "pages/home/index",
+      "style": {
+        "navigationBarTitleText": "拼豆图制作",
+        "navigationBarBackgroundColor": "#ff686b",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/create/index",
+      "style": {
+        "navigationBarTitleText": "新建图纸",
+        "navigationBarBackgroundColor": "#f7f2e8",
+        "navigationBarTextStyle": "black"
+      }
+    },
+    {
+      "path": "pages/editor/index",
+      "style": {
+        "navigationBarTitleText": "图纸编辑",
+        "navigationBarBackgroundColor": "#f7f2e8",
+        "navigationBarTextStyle": "black"
+      }
+    },
+    {
+      "path": "pages/projects/index",
+      "style": {
+        "navigationBarTitleText": "拼豆图",
+        "navigationBarBackgroundColor": "#fffaf7",
+        "navigationBarTextStyle": "black"
+      }
+    },
+    {
+      "path": "pages/mine/index",
+      "style": {
+        "navigationBarTitleText": "我的",
+        "navigationBarBackgroundColor": "#f7f2e8",
+        "navigationBarTextStyle": "black"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "拼豆图制作",
+    "navigationBarBackgroundColor": "#f7f2e8",
+    "backgroundColor": "#f7f2e8",
+    "rpxCalcMaxDeviceWidth": 960,
+    "rpxCalcBaseDeviceWidth": 375,
+    "rpxCalcIncludeWidth": 750
+  },
+  "tabBar": {
+    "color": "#9b9b9b",
+    "selectedColor": "#ff8a00",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "制作",
+        "iconPath": "/static/home.png",
+        "selectedIconPath": "/static/home-active.png"
+      },
+      {
+        "pagePath": "pages/projects/index",
+        "text": "拼豆图",
+        "iconPath": "/static/search.png",
+        "selectedIconPath": "/static/search-active.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "/static/home.png",
+        "selectedIconPath": "/static/home-active.png"
+      }
+    ]
+  }
+}
