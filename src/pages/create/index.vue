@@ -4,7 +4,7 @@
       <image v-if="sourceImage" class="preview-image" :src="sourceImage" mode="aspectFill" />
       <view v-else class="upload-empty">
         <text class="upload-title">选择一张照片</text>
-        <text class="upload-text">头像、宠物、表情包、动漫截图都可以。</text>
+        <text class="upload-text">请上传本人有权使用且符合平台规范的图片。</text>
       </view>
     </view>
 
@@ -75,8 +75,8 @@
       <text class="tips-text">小尺寸适合轮廓清楚的照片。颜色越少越省豆，颜色越多越像原图。</text>
     </view>
 
-    <button class="primary-button" :disabled="isGenerating" @click="generatePattern">
-      {{ isGenerating ? '正在生成...' : '生成拼豆图纸' }}
+    <button class="primary-button" :disabled="isGenerating || isCheckingImage" @click="generatePattern">
+      {{ generateButtonText }}
     </button>
     <button class="secondary-button blank-button" @click="createBlank">创建空白画板</button>
 
@@ -87,6 +87,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { COLOR_LIMITS, SIZE_PRESETS, buildPatternFromImageData, createBlankPattern, createProject } from '@/utils/beadPattern.js'
+import { checkImageContent } from '@/utils/contentSecurity.js'
 import { saveProject } from '@/utils/projects.js'
 import { PALETTES } from '@/data/palettes.js'
 import { toast } from '@/utils/share.js'
@@ -97,34 +98,69 @@ const selectedSize = ref(SIZE_PRESETS[1])
 const colorLimit = ref(16)
 const paletteId = ref(PALETTES[0].id)
 const isGenerating = ref(false)
+const isCheckingImage = ref(false)
 
 const canvasStyle = computed(() => {
   return `position:absolute;left:-9999px;top:-9999px;width:${selectedSize.value.width}px;height:${selectedSize.value.height}px;`
 })
 
+const generateButtonText = computed(() => {
+  if (isCheckingImage.value) return '图片检测中...'
+  if (isGenerating.value) return '正在生成...'
+  return '生成拼豆图纸'
+})
+
 function chooseImage() {
+  if (isCheckingImage.value || isGenerating.value) return
+
   uni.chooseMedia({
     count: 1,
     mediaType: ['image'],
     sourceType: ['album', 'camera'],
     sizeType: ['compressed'],
-    success: (result) => {
+    success: async (result) => {
       const file = result.tempFiles && result.tempFiles[0]
-      sourceImage.value = file?.tempFilePath || ''
-      if (sourceImage.value) {
-        uni.getImageInfo({
-          src: sourceImage.value,
-          success: (info) => {
-            imageInfo.value = info
-          },
-          fail: () => toast('读取图片失败')
+      const filePath = file?.tempFilePath || ''
+      if (!filePath) return
+
+      sourceImage.value = ''
+      imageInfo.value = null
+      isCheckingImage.value = true
+      uni.showLoading({ title: '安全检测中' })
+
+      try {
+        await checkImageContent(filePath)
+        const info = await new Promise((resolve, reject) => {
+          uni.getImageInfo({
+            src: filePath,
+            success: resolve,
+            fail: reject
+          })
         })
+        sourceImage.value = filePath
+        imageInfo.value = info
+        uni.hideLoading()
+      } catch (error) {
+        console.error(error)
+        uni.hideLoading()
+        uni.showModal({
+          title: '图片不可用',
+          content: '图片内容不符合平台规范，请更换图片',
+          showCancel: false
+        })
+      } finally {
+        isCheckingImage.value = false
       }
     }
   })
 }
 
 async function generatePattern() {
+  if (isCheckingImage.value) {
+    toast('请等待图片检测完成')
+    return
+  }
+
   if (!sourceImage.value || !imageInfo.value) {
     toast('请先选择图片')
     return
@@ -202,6 +238,7 @@ function getResizedImageData() {
 
 <style lang="scss" scoped>
 .upload-zone {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;

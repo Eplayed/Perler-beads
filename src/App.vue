@@ -2,6 +2,9 @@
 export default {
   onLaunch() {
     console.log('拼豆图纸工坊启动')
+    if (typeof wx !== 'undefined' && wx.cloud) {
+      wx.cloud.init({ traceUser: true })
+    }
   },
   onShow() {
     console.log('App Show')

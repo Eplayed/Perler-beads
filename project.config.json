@@ -22,5 +22,6 @@
   },
   "appid": "wx96b73c7f333048bb",
   "editorSetting": {},
+  "cloudfunctionRoot": "cloudfunctions/",
   "miniprogramRoot": "dist/build/mp-weixin/"
 }

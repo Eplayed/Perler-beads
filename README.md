@@ -20,4 +20,14 @@ npm run dev:mp-weixin
 npm run build:mp-weixin
 ```
 
-使用微信开发者工具打开 `dist/dev/mp-weixin`。
+使用微信开发者工具打开项目根目录，构建产物目录为 `dist/build/mp-weixin`。
+
+## 微信审核与内容安全
+
+图片上传会先调用云函数 `image-sec-check`，通过微信图片内容安全接口后才进入本地生成流程。
+
+发布预览前请使用微信开发者工具打开项目根目录，并完成云开发配置：
+
+1. 开通云开发环境。
+2. 上传并部署 `cloudfunctions/image-sec-check` 云函数。
+3. 运行 `npm run build:mp-weixin` 后，在开发者工具中上传代码。
