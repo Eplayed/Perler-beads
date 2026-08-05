@@ -13,12 +13,6 @@
         </view>
       </view>
 
-      <button class="service-row" @click="contactService">
-        <text class="bubble">⌁</text>
-        <text class="service-text">联系客服</text>
-        <text class="arrow">›</text>
-      </button>
-
       <view class="record-title-row">
         <text class="record-title">图纸记录</text>
         <button v-if="history.length" class="clear-button" @click="clearRecords">清空</button>
@@ -77,14 +71,6 @@ function clearRecords() {
       history.value = []
       toast('已清空')
     }
-  })
-}
-
-function contactService() {
-  uni.showModal({
-    title: '联系客服',
-    content: '个人版暂未接入客服消息。可以先在小程序简介或公众号资料里放联系邮箱。',
-    showCancel: false
   })
 }
 
@@ -163,31 +149,6 @@ function formatRecordTime(timestamp) {
   font-size: 24rpx;
 }
 
-.service-row {
-  display: grid;
-  grid-template-columns: 44rpx 1fr 24rpx;
-  gap: 16rpx;
-  align-items: center;
-  width: 100%;
-  height: 104rpx;
-  margin-top: 24rpx;
-  padding: 0 28rpx;
-  border-radius: 14rpx;
-  text-align: left;
-  background: #ffffff;
-}
-
-.bubble {
-  color: #9a9a9a;
-  font-size: 34rpx;
-}
-
-.service-text {
-  color: #202020;
-  font-size: 29rpx;
-}
-
-.arrow,
 .record-arrow {
   color: #b1a49d;
   font-size: 42rpx;

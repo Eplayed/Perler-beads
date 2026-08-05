@@ -7,15 +7,6 @@
     </view>
 
     <view class="gallery-body">
-      <view class="library-banner">
-        <view>
-          <text class="banner-kicker">图纸资料库</text>
-          <text class="banner-title">完整图库存放于夸克网盘</text>
-          <text class="banner-text">本页先放自制样例图纸，后续可批量扩充。</text>
-        </view>
-        <button class="download-button" @click="showSourceTips">下载全部</button>
-      </view>
-
       <view class="pattern-grid">
         <button
           v-for="item in patterns"
@@ -48,7 +39,7 @@
 
         <view class="modal-tip">
           <text class="tip-title">点击图片可查看大图</text>
-          <text class="tip-text">需要批量图库时，可返回页面顶部查看网盘入口。</text>
+          <text class="tip-text">图纸会自动记录到“我的”页面，方便下次继续查看。</text>
         </view>
       </view>
     </view>
@@ -59,7 +50,6 @@
 import { ref } from 'vue'
 import { GALLERY_PATTERNS } from '@/data/gallery.js'
 import { addGalleryHistory } from '@/utils/galleryHistory.js'
-import { toast } from '@/utils/share.js'
 
 const patterns = GALLERY_PATTERNS
 const selectedPattern = ref(null)
@@ -82,14 +72,6 @@ function previewImage(current) {
   })
 }
 
-function showSourceTips() {
-  uni.showModal({
-    title: '现有图纸来源建议',
-    content: '优先使用自制图纸、用户自己生成的图纸、作者授权图纸、开源许可素材。不要直接搬运小红书、Pinterest、商品图或品牌 IP 图。',
-    showCancel: false,
-    confirmText: '知道了'
-  })
-}
 </script>
 
 <style lang="scss" scoped>
@@ -130,52 +112,6 @@ function showSourceTips() {
 
 .gallery-body {
   padding: 28rpx;
-}
-
-.library-banner {
-  display: grid;
-  grid-template-columns: 1fr 132rpx;
-  gap: 18rpx;
-  align-items: center;
-  margin-bottom: 28rpx;
-  padding: 28rpx 24rpx;
-  border-radius: 6rpx;
-  background: #252c33;
-  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.16);
-}
-
-.banner-kicker,
-.banner-title,
-.banner-text {
-  display: block;
-}
-
-.banner-kicker {
-  color: #58d0bb;
-  font-size: 22rpx;
-  font-weight: 800;
-}
-
-.banner-title {
-  margin-top: 6rpx;
-  color: #ffffff;
-  font-size: 29rpx;
-  font-weight: 900;
-}
-
-.banner-text {
-  margin-top: 8rpx;
-  color: #f0f3f4;
-  font-size: 22rpx;
-}
-
-.download-button {
-  height: 82rpx;
-  border-radius: 4rpx;
-  color: #171717;
-  font-size: 25rpx;
-  font-weight: 900;
-  background: #ffd05d;
 }
 
 .pattern-grid {

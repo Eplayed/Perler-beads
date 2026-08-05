@@ -13,15 +13,6 @@
         <text class="upload-subtitle">支持 JPG、PNG 格式</text>
       </button>
 
-      <view class="pro-card">
-        <view class="ai-badge">AI</view>
-        <view class="pro-copy">
-          <text class="pro-title">拼豆高级版</text>
-          <text class="pro-text">建议先生成高级版风格图，再制作拼豆图纸</text>
-        </view>
-        <button class="pro-button" @click="goCreate">去生成</button>
-      </view>
-
       <view class="quiet-note">
         <text class="note-title">当前版本</text>
         <text class="note-text">先专注图片生成拼豆图纸，更多功能后续再开放。</text>
@@ -105,56 +96,6 @@ function goCreate() {
   margin-top: 10rpx;
   color: #9a9a9a;
   font-size: 26rpx;
-}
-
-.pro-card {
-  display: grid;
-  grid-template-columns: 64rpx 1fr 104rpx;
-  gap: 18rpx;
-  align-items: center;
-  margin-top: 48rpx;
-  padding: 22rpx 20rpx;
-  border-radius: 14rpx;
-  background: linear-gradient(100deg, #513049 0%, #ff6266 62%, #ffad2d 100%);
-  box-shadow: 0 10rpx 28rpx rgba(255, 103, 108, 0.22);
-}
-
-.ai-badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 64rpx;
-  height: 64rpx;
-  border-radius: 16rpx;
-  color: #ffffff;
-  font-size: 27rpx;
-  font-weight: 900;
-  background: rgba(255, 255, 255, 0.24);
-}
-
-.pro-title,
-.pro-text {
-  display: block;
-  color: #ffffff;
-}
-
-.pro-title {
-  font-size: 29rpx;
-  font-weight: 900;
-}
-
-.pro-text {
-  margin-top: 4rpx;
-  font-size: 21rpx;
-}
-
-.pro-button {
-  height: 56rpx;
-  border-radius: 28rpx;
-  color: #ff676c;
-  font-size: 23rpx;
-  font-weight: 900;
-  background: #fff4dc;
 }
 
 .quiet-note {

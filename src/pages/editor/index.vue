@@ -263,9 +263,9 @@ function drawExportCanvas() {
   const margin = 28
   const gridWidth = project.value.width * cell
   const gridHeight = project.value.height * cell
-  const legendRows = project.value.stats.length
+  const legendRows = Math.ceil(project.value.stats.length / 2)
   exportCanvasWidth.value = gridWidth + margin * 2
-  exportCanvasHeight.value = gridHeight + margin * 2 + 128 + legendRows * 28
+  exportCanvasHeight.value = gridHeight + margin * 2 + 126 + legendRows * 30
 
   return new Promise((resolve) => {
     nextTick(() => {
@@ -301,13 +301,19 @@ function drawExportCanvas() {
       context.setFillStyle('#25302f')
       context.setFontSize(16)
       context.fillText('用豆清单', margin, legendTop)
+      const columnGap = 28
+      const columnWidth = Math.floor((gridWidth - columnGap) / 2)
+      const legendLeft = margin
       project.value.stats.forEach((item, index) => {
-        const y = legendTop + 28 + index * 28
+        const column = index % 2
+        const row = Math.floor(index / 2)
+        const x = legendLeft + column * (columnWidth + columnGap)
+        const y = legendTop + 30 + row * 30
         context.setFillStyle(item.hex)
-        context.fillRect(margin, y - 14, 18, 18)
+        context.fillRect(x, y - 15, 18, 18)
         context.setFillStyle('#25302f')
         context.setFontSize(13)
-        context.fillText(`${item.id} ${item.name} · ${item.count} 颗`, margin + 28, y)
+        context.fillText(`${item.id} ${item.name} · ${item.count} 颗`, x + 28, y)
       })
 
       context.draw(false, () => {
