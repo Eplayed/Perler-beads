@@ -287,23 +287,15 @@ function drawExportCanvas() {
         context.fillRect(x, y, cell, cell)
       })
 
-      context.setStrokeStyle('rgba(37,48,47,0.22)')
-      context.setLineWidth(1)
-      for (let column = 0; column <= project.value.width; column += 1) {
-        if (column % 5 === 0 || column === project.value.width) {
-          const x = margin + column * cell
-          context.moveTo(x, top)
-          context.lineTo(x, top + gridHeight)
-        }
-      }
-      for (let row = 0; row <= project.value.height; row += 1) {
-        if (row % 5 === 0 || row === project.value.height) {
-          const y = top + row * cell
-          context.moveTo(margin, y)
-          context.lineTo(margin + gridWidth, y)
-        }
-      }
-      context.stroke()
+      drawGridLines(context, {
+        left: margin,
+        top,
+        width: project.value.width,
+        height: project.value.height,
+        cell,
+        gridWidth,
+        gridHeight
+      })
 
       const legendTop = top + gridHeight + 36
       context.setFillStyle('#25302f')
@@ -323,6 +315,50 @@ function drawExportCanvas() {
       })
     })
   })
+}
+
+function drawGridLines(context, options) {
+  const { left, top, width, height, cell, gridWidth, gridHeight } = options
+
+  context.beginPath()
+  context.setStrokeStyle('rgba(37,48,47,0.12)')
+  context.setLineWidth(1)
+  for (let column = 0; column <= width; column += 1) {
+    const x = left + column * cell
+    context.moveTo(x, top)
+    context.lineTo(x, top + gridHeight)
+  }
+  for (let row = 0; row <= height; row += 1) {
+    const y = top + row * cell
+    context.moveTo(left, y)
+    context.lineTo(left + gridWidth, y)
+  }
+  context.stroke()
+
+  context.beginPath()
+  context.setStrokeStyle('rgba(37,48,47,0.32)')
+  context.setLineWidth(1)
+  for (let column = 0; column <= width; column += 1) {
+    if (column % 5 === 0 || column === width) {
+      const x = left + column * cell
+      context.moveTo(x, top)
+      context.lineTo(x, top + gridHeight)
+    }
+  }
+  for (let row = 0; row <= height; row += 1) {
+    if (row % 5 === 0 || row === height) {
+      const y = top + row * cell
+      context.moveTo(left, y)
+      context.lineTo(left + gridWidth, y)
+    }
+  }
+  context.stroke()
+
+  context.beginPath()
+  context.setStrokeStyle('rgba(37,48,47,0.44)')
+  context.setLineWidth(2)
+  context.rect(left, top, gridWidth, gridHeight)
+  context.stroke()
 }
 
 function goCreate() {
