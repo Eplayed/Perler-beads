@@ -1,11 +1,5 @@
 <template>
   <view class="gallery-page">
-    <view class="page-head">
-      <text class="menu-icon">☰</text>
-      <text class="head-title">拼豆图</text>
-      <text class="search-icon">⌕</text>
-    </view>
-
     <view class="gallery-body">
       <view class="pattern-grid">
         <button
@@ -78,36 +72,6 @@ function previewImage(current) {
 .gallery-page {
   min-height: 100vh;
   background: #f6efec;
-}
-
-.page-head {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 80rpx 1fr 80rpx;
-  align-items: center;
-  height: 128rpx;
-  padding: 22rpx 28rpx 0;
-  background: #fffaf7;
-}
-
-.head-title {
-  color: #202020;
-  font-size: 34rpx;
-  font-weight: 900;
-  text-align: center;
-}
-
-.menu-icon,
-.search-icon {
-  color: #202020;
-  font-size: 44rpx;
-  line-height: 1;
-}
-
-.search-icon {
-  text-align: right;
 }
 
 .gallery-body {
