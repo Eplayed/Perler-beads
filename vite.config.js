@@ -4,6 +4,12 @@ import commonjs from '@rollup/plugin-commonjs'
 import path from 'path'
 
 export default defineConfig({
+  define: {
+    'process.env.UNI_SUB_PLATFORM': JSON.stringify('mp-weixin'),
+    'process.env.UNI_MP_PLUGIN': 'false',
+    'process.env.UNI_SUBPACKAGE': 'false',
+    'process.env.VUE_APP_DEBUG': 'false'
+  },
   uni: {
     vue3: {
       vitePath: 'vite'

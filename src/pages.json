@@ -45,10 +45,7 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "拼豆图制作",
     "navigationBarBackgroundColor": "#f7f2e8",
-    "backgroundColor": "#f7f2e8",
-    "rpxCalcMaxDeviceWidth": 960,
-    "rpxCalcBaseDeviceWidth": 375,
-    "rpxCalcIncludeWidth": 750
+    "backgroundColor": "#f7f2e8"
   },
   "tabBar": {
     "color": "#9b9b9b",

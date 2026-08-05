@@ -24,7 +24,6 @@
       "es6": false
     },
     "usingComponents": true,
-    "mergeVirtualHostAttributes": true,
     "uniStatistics": {
       "enable": false
     }
